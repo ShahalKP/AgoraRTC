@@ -9,6 +9,7 @@ $(() => {
 	M.AutoInit();
 
 	let rtm = new RtmClient();
+	// let rtmChannel = ;
 
 	rtm.on("ConnectionStateChanged", (newState, reason) => {
 		console.log("reason", reason);
@@ -286,7 +287,7 @@ $(() => {
 			});
 	});
 
-	$("#query_peer").on("click", function(e) {
+	$("#channel_members").on("click", function(e) {
 		e.preventDefault();
 		if (!rtm._logined) {
 			Toast.error("Please Login First");
@@ -295,24 +296,15 @@ $(() => {
 
 		const params = serializeFormData("loginForm");
 
-		if (!validator(params, ["appId", "accountName", "memberId"])) {
+		if (!validator(params, ["appId", "accountName", "channelId"])) {
 			return;
 		}
 
-		rtm
-			.queryPeersOnlineStatus(params.memberId)
-			.then(res => {
-				const view = $("<div/>", {
-					text:
-						"memberId: " + params.memberId + ", online: " + res[params.memberId]
-				});
-				$("#log").append(view);
-			})
-			.catch(err => {
-				Toast.error(
-					"query peer online status failed, please open console see more details."
-				);
-				console.error(err);
+		rtm.channels[params.channelName].channel.getMembers().then(res => {
+			const view = $("<div/>", {
+				text: "Memebers of channel " + params.channelName + " are : " + res
 			});
+			$("#log").append(view);
+		});
 	});
 });
