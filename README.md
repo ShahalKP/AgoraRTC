@@ -6,7 +6,11 @@ This tutorial shows you how to quickly integrate Agora Web RTM SDK with the Agor
 This demo contains following features:
 
 - Login & Logout:
-  ![Login](/images/login.png)
+
+To begin the app, first login with an unique Account Name and hit LOGIN. On succesfull login, a popup message in green will appear.
+
+![Login](/images/login.png)
+
 - Join & Leave Channel:
 - Get List of Channel Members:
 - Send P2P Message:
