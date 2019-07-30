@@ -9,7 +9,6 @@ $(() => {
 	M.AutoInit();
 
 	let rtm = new RtmClient();
-	// let rtmChannel = ;
 
 	rtm.on("ConnectionStateChanged", (newState, reason) => {
 		console.log("reason", reason);
@@ -87,7 +86,8 @@ $(() => {
 		}
 
 		const params = serializeFormData("loginForm");
-		params.appId = "3ea0ac537c5948fb934f4a688ced057b";
+		// App ID harcoded
+		params.appId = "8716044fdc5948628d8090aea2b727bd";
 		if (!validator(params, ["appId", "accountName"])) {
 			return;
 		}
